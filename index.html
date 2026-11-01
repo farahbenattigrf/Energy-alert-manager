@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Alert Manager - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Barre latérale -->
+    <aside class="sidebar">
+        <h2>⚡ Energy Alert</h2>
+        <p class="subtitle">Management System</p>
+
+        <nav>
+            <a href="#" class="active">Dashboard</a>
+            <a href="#alerts">Alertes</a>
+            <a href="#statistics">Statistiques</a>
+            <a href="#">Utilisateurs</a>
+        </nav>
+
+        <div class="admin">
+            <div class="avatar">A</div>
+            <div>
+                <strong>Administrateur</strong>
+                <small>Admin account</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="main-content">
+
+        <header>
+            <div>
+                <h1>Dashboard</h1>
+                <p>Bienvenue dans votre espace de gestion énergétique.</p>
+            </div>
+            <span class="date">Energy Alert Manager</span>
+        </header>
+
+        <section class="welcome">
+            <div>
+                <h2>Vue d'ensemble énergétique</h2>
+                <p>Surveillez les alertes et les anomalies énergétiques.</p>
+            </div>
+            <span class="energy-icon">⚡</span>
+        </section>
+
+        <!-- Statistiques -->
+        <section class="statistics" id="statistics">
+
+            <div class="stat-card">
+                <p>Total des alertes</p>
+                <h2 id="total">25</h2>
+                <small>Toutes les alertes enregistrées</small>
+            </div>
+
+            <div class="stat-card critical">
+                <p>Alertes critiques</p>
+                <h2 id="critical">8</h2>
+                <small>Alertes nécessitant une attention</small>
+            </div>
+
+            <div class="stat-card resolved">
+                <p>Alertes résolues</p>
+                <h2 id="resolved">17</h2>
+                <small>Alertes traitées</small>
+            </div>
+
+        </section>
+
+        <!-- Tableau des alertes -->
+        <section class="alerts" id="alerts">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Alertes récentes</h2>
+                    <p>Dernières anomalies détectées</p>
+                </div>
+
+                <button onclick="showAlerts()">Voir les alertes</button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Équipement</th>
+                            <th>Date</th>
+                            <th>Type d'anomalie</th>
+                            <th>Priorité</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="alert-list">
+                        <tr>
+                            <td>Compteur A01</td>
+                            <td>01/11/2026</td>
+                            <td>Surconsommation</td>
+                            <td><span class="badge danger">Critique</span></td>
+                            <td><span class="badge pending">En attente</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Machine B02</td>
+                            <td>31/10/2026</td>
+                            <td>Consommation anormale</td>
+                            <td><span class="badge warning">Moyenne</span></td>
+                            <td><span class="badge progress">En cours</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Compteur C03</td>
+                            <td>30/10/2026</td>
+                            <td>Anomalie de mesure</td>
+                            <td><span class="badge danger">Critique</span></td>
+                            <td><span class="badge resolved">Résolue</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <footer>
+            Energy Alert Manager © 2026
+            <br>
+            Projet universitaire - Predict'O Energy / Tadbir AI
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
