@@ -4,22 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy Alert Manager - Dashboard</title>
+    <title>Energy Alert Manager | Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Barre latérale -->
     <aside class="sidebar">
-        <h2>⚡ Energy Alert</h2>
-        <p class="subtitle">Management System</p>
+        <div class="logo">
+            <span>⚡</span>
+            <div>
+                <h2>Energy Alert</h2>
+                <small>Management System</small>
+            </div>
+        </div>
 
         <nav>
-            <a href="#" class="active">Dashboard</a>
-            <a href="#alerts">Alertes</a>
-            <a href="#statistics">Statistiques</a>
-            <a href="#">Utilisateurs</a>
+            <a href="#dashboard" class="active">▦ Dashboard</a>
+            <a href="#statistics">📊 Statistiques</a>
+            <a href="#alerts">⚠ Gestion des alertes</a>
+            <a href="#add-alert">＋ Ajouter une alerte</a>
         </nav>
 
         <div class="admin">
@@ -31,58 +35,145 @@
         </div>
     </aside>
 
-    <!-- Contenu principal -->
-    <main class="main-content">
+    <main class="main-content" id="dashboard">
 
         <header>
             <div>
                 <h1>Dashboard</h1>
                 <p>Bienvenue dans votre espace de gestion énergétique.</p>
             </div>
-            <span class="date">Energy Alert Manager</span>
+
+            <div class="header-right">
+                <span class="online-dot"></span>
+                Système actif
+            </div>
         </header>
 
         <section class="welcome">
             <div>
+                <span class="welcome-label">ENERGY MONITORING PLATFORM</span>
                 <h2>Vue d'ensemble énergétique</h2>
-                <p>Surveillez les alertes et les anomalies énergétiques.</p>
+                <p>Surveillez vos équipements et gérez les anomalies énergétiques.</p>
             </div>
-            <span class="energy-icon">⚡</span>
+            <div class="energy-icon">⚡</div>
         </section>
 
-        <!-- Statistiques -->
+        <!-- STATISTIQUES -->
         <section class="statistics" id="statistics">
 
-            <div class="stat-card">
-                <p>Total des alertes</p>
-                <h2 id="total">25</h2>
-                <small>Toutes les alertes enregistrées</small>
+            <div class="stat-card blue">
+                <div class="stat-top">
+                    <span>Total des alertes</span>
+                    <span class="stat-icon">📋</span>
+                </div>
+                <h2 id="total">0</h2>
+                <small>Alertes enregistrées</small>
             </div>
 
-            <div class="stat-card critical">
-                <p>Alertes critiques</p>
-                <h2 id="critical">8</h2>
-                <small>Alertes nécessitant une attention</small>
+            <div class="stat-card red">
+                <div class="stat-top">
+                    <span>Alertes critiques</span>
+                    <span class="stat-icon">⚠️</span>
+                </div>
+                <h2 id="critical">0</h2>
+                <small>À traiter en priorité</small>
             </div>
 
-            <div class="stat-card resolved">
-                <p>Alertes résolues</p>
-                <h2 id="resolved">17</h2>
+            <div class="stat-card green">
+                <div class="stat-top">
+                    <span>Alertes résolues</span>
+                    <span class="stat-icon">✓</span>
+                </div>
+                <h2 id="resolved">0</h2>
                 <small>Alertes traitées</small>
             </div>
 
         </section>
 
-        <!-- Tableau des alertes -->
-        <section class="alerts" id="alerts">
+        <!-- AJOUTER UNE ALERTE -->
+        <section class="panel" id="add-alert">
 
             <div class="section-heading">
                 <div>
-                    <h2>Alertes récentes</h2>
-                    <p>Dernières anomalies détectées</p>
+                    <h2>Ajouter une alerte</h2>
+                    <p>Enregistrer une nouvelle anomalie énergétique.</p>
+                </div>
+                <span class="section-icon">＋</span>
+            </div>
+
+            <form id="alert-form">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="equipment">Nom de l'équipement</label>
+                        <input
+                            type="text"
+                            id="equipment"
+                            placeholder="Ex : Compteur A01"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consumption">Consommation (kWh)</label>
+                        <input
+                            type="number"
+                            id="consumption"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="Ex : 150"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="anomaly">Type d'anomalie</label>
+                        <select id="anomaly" required>
+                            <option value="">Choisir une anomalie</option>
+                            <option value="Surconsommation">Surconsommation</option>
+                            <option value="Consommation anormale">Consommation anormale</option>
+                            <option value="Anomalie de mesure">Anomalie de mesure</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="priority">Priorité</label>
+                        <select id="priority" required>
+                            <option value="Critique">Critique</option>
+                            <option value="Moyenne" selected>Moyenne</option>
+                            <option value="Faible">Faible</option>
+                        </select>
+                    </div>
+
                 </div>
 
-                <button onclick="showAlerts()">Voir les alertes</button>
+                <button type="submit" class="primary-button">
+                    + Enregistrer l'alerte
+                </button>
+
+                <p id="form-message" class="form-message"></p>
+
+            </form>
+        </section>
+
+        <!-- LISTE DES ALERTES -->
+        <section class="panel" id="alerts">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Gestion des alertes</h2>
+                    <p>Consulter et modifier les alertes enregistrées.</p>
+                </div>
+            </div>
+
+            <div class="search-box">
+                <input
+                    type="search"
+                    id="search"
+                    placeholder="Rechercher un équipement ou une anomalie..."
+                >
             </div>
 
             <div class="table-container">
@@ -91,50 +182,32 @@
                         <tr>
                             <th>Équipement</th>
                             <th>Date</th>
-                            <th>Type d'anomalie</th>
+                            <th>Consommation</th>
+                            <th>Anomalie</th>
                             <th>Priorité</th>
                             <th>Statut</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
-                    <tbody id="alert-list">
-                        <tr>
-                            <td>Compteur A01</td>
-                            <td>01/11/2026</td>
-                            <td>Surconsommation</td>
-                            <td><span class="badge danger">Critique</span></td>
-                            <td><span class="badge pending">En attente</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>Machine B02</td>
-                            <td>31/10/2026</td>
-                            <td>Consommation anormale</td>
-                            <td><span class="badge warning">Moyenne</span></td>
-                            <td><span class="badge progress">En cours</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>Compteur C03</td>
-                            <td>30/10/2026</td>
-                            <td>Anomalie de mesure</td>
-                            <td><span class="badge danger">Critique</span></td>
-                            <td><span class="badge resolved">Résolue</span></td>
-                        </tr>
-                    </tbody>
+                    <tbody id="alert-list"></tbody>
                 </table>
             </div>
+
+            <p id="empty-message" class="empty-message">
+                Aucune alerte enregistrée.
+            </p>
 
         </section>
 
         <footer>
-            Energy Alert Manager © 2026
-            <br>
-            Projet universitaire - Predict'O Energy / Tadbir AI
+            <strong>Energy Alert Manager</strong>
+            <p>Projet universitaire - Predict'O Energy / Tadbir AI © 2026</p>
         </footer>
 
     </main>
 
     <script src="script.js"></script>
+
 </body>
 </html>
